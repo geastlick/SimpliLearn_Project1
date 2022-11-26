@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Client</th>
+    <th>Topic</th>
+    <th>Attendees</th>
+    <th>Start Time</th>
+    <th><button id="btnnewmeeting" class="btn btn-primary" (click)="createMeeting()"><i class="bi bi-calendar-plus"></i>&nbsp;New Meeting</button></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let clientMeeting of clientMeetings">
+    <td><button id="btneditmeeting" class="btn" (click)="editMeeting(clientMeeting)"><i class="bi bi-pencil"></i>&nbsp;{{ getClientName(clientMeeting.clientid) }}</button></td>
+    <td>{{clientMeeting.topic}}</td>
+    <td>{{clientMeeting.attendees}}</td>
+    <td>{{clientMeeting.starttime}}</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+<span *ngIf="clientMeetings.length == 0">No Client Meetings</span>

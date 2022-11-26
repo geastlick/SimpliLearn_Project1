@@ -1,0 +1,63 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add/Edit Meeting</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="clientMeetingForm" (ngSubmit)="onSubmit()">
+
+    <div class="row mb-3">
+      <label for="client" class="col-sm-2 col-form-label">Client:</label>
+      <div class="col-sm-10">
+    <select id="client" class="form-select" aria-label="Client Name" formControlName="clientid">
+      <option *ngFor="let option of clientOptions"
+              [ngValue]="option.value"
+              [attr.selected]="clientMeetingForm.controls['clientid'].value === option.value ? true : null">
+        {{option.label}}
+      </option>
+    </select>
+        <div *ngIf="isInvalid(clientMeetingForm.controls['clientid'])">
+          Client is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+    <label for="topic" class="col-sm-2 col-form-label">Topic:</label>
+      <div class="col-sm-10">
+    <input id="topic" type="text" formControlName="topic" class="form-control">
+        <div *ngIf="isInvalid(clientMeetingForm.controls['topic'])">
+          Meeting Topic is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+    <label for="attendees" class="col-sm-2 col-form-label">Attendees:</label>
+      <div class="col-sm-10">
+    <input id="attendees" type="text" formControlName="attendees" class="form-control">
+        <div *ngIf="isInvalid(clientMeetingForm.controls['attendees'])">
+          Meeting Attendees are required
+        </div>
+    </div>
+</div>
+
+      <div class="row mb-3">
+        <label for="meetingDate" class="col-sm-2 col-form-label">Meeting Time:</label>
+        <div class="col-sm-10">
+    <ngb-datepicker id="meetingDate"
+                    formControlName="dateControl"
+                    [minDate]="getToday()"
+    ></ngb-datepicker>
+    <ngb-timepicker id="meetingTime"
+                    formControlName="timeControl"
+                    [meridian]="true"
+                    [minuteStep]="15"
+    ></ngb-timepicker>
+        </div>
+      </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button id="btnClientMeetingSave" type="submit" class="btn btn-primary" [disabled]="!clientMeetingForm.valid">Save</button>
+    </div>
+  </form>
+</div>

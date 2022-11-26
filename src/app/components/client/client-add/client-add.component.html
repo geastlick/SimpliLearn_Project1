@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add/Edit Client</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">Client Name:</label>
+      <div class="col-sm-10">
+        <input id="name" type="text" formControlName="name" class="form-control">
+        <div *ngIf="isInvalid(clientForm.controls['name'])">
+          Client Name is required
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+  <label for="email" class="col-sm-2 col-form-label">Email:</label>
+      <div class="col-sm-10">
+  <input id="email" type="text" formControlName="email" class="form-control">
+        <div *ngIf="isInvalid(clientForm.controls['email'])">
+          Email is required.  Please enter a valid Email address
+        </div>
+      </div>
+    </div>
+
+      <div class="row mb-3">
+  <label for="address" class="col-sm-2 col-form-label">Address:</label>
+        <div class="col-sm-10">
+  <input id="address" type="text" formControlName="address" class="form-control">
+          <div *ngIf="isInvalid(clientForm.controls['address'])">
+            Client Address is required.
+          </div>
+        </div>
+      </div>
+
+        <div class="row mb-3">
+  <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
+          <div class="col-sm-10">
+  <input id="phone" type="text" formControlName="phone" class="form-control">
+            <div *ngIf="isInvalid(clientForm.controls['phone'])">
+              Client Phone is required.  Please enter a valid Phone number as 999-999-9999
+            </div>
+          </div>
+        </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button id="btnClientSave" type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">Save</button>
+    </div>
+  </form>
+</div>
